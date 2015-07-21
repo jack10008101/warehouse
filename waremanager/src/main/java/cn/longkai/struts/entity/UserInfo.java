@@ -15,21 +15,18 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
+@Table(name="T_UserInfo")
 public class UserInfo implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private String userName;
-	private String password;
-	private String workId;
-	private boolean isAdmin;
-	private String department;
-	private String name;
-	private String phone;
-	private boolean isExists;
+	private Integer id;//主键，用户的唯一标识
+	private String userName;//用户名
+	private String password;//登录密码
+	private String workId;//工号
+	private boolean isAdmin;//是否管理员
+	private String department;//所属部门
+	private String name;//真实姓名
+	private String phone;//联系方式
+	private boolean isLive;//是否在公司
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -45,7 +42,7 @@ public class UserInfo implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	@Column()
+	@Column(length=30)
 	public String getPassword() {
 		return password;
 	}
@@ -59,7 +56,7 @@ public class UserInfo implements Serializable{
 	public void setWorkId(String workId) {
 		this.workId = workId;
 	}
-	@Column
+	@Column(nullable=false)
 	public boolean isAdmin() {
 		return isAdmin;
 	}
@@ -73,26 +70,27 @@ public class UserInfo implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	@Column(length=20)
+	@Column(length=20,nullable=false)
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(length=15)
+	@Column(length=15,nullable=false)
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Column
-	public boolean isExists() {
-		return isExists;
+	@Column(nullable=false)
+	public boolean isLive() {
+		return isLive;
 	}
-	public void setExists(boolean isExists) {
-		this.isExists = isExists;
+	public void setLive(boolean isLive) {
+		this.isLive = isLive;
 	}
+	
 	
 }
