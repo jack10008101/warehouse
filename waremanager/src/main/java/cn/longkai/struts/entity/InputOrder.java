@@ -38,6 +38,7 @@ public class InputOrder implements Serializable{
     private Integer inputUserId;//入库人员Id
     private Date inputDate;//入库时间
     private String remark;
+    private String orderUrl;
     @Id
     @GeneratedValue
 	public Integer getId() {
@@ -130,6 +131,13 @@ public class InputOrder implements Serializable{
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	@Column(length=30)
+	public String getOrderUrl() {
+		return orderUrl;
+	}
+	public void setOrderUrl(String orderUrl) {
+		this.orderUrl = orderUrl;
 	}
     
 }
