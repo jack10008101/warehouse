@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>index</title>
@@ -11,17 +11,13 @@
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.css">
-
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/stylesheets/theme.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css">
-
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
-
 <!-- Demo page code -->
-
 <style type="text/css">
 #line-chart {
 	height: 300px;
@@ -70,35 +66,22 @@
 <body class="">
 	<!--<![endif]-->
 	<!-- 网页头部 -->
-<jsp:include page="/pages/public/top.jsp"></jsp:include>
-<jsp:include page="/pages/public/left.jsp"></jsp:include>
-<div class="content">
-		<!--      <div class="header">
-       <div class="stats">
-       <p class="stat"><span class="number">53</span>tickets</p>
-       <p class="stat"><span class="number">27</span>tasks</p>
-       <p class="stat"><span class="number">15</span>waiting</p>
-   </div>
-   
-       <h1 class="page-title">Dashboard</h1>
-   </div> -->
-
+	<jsp:include page="/pages/public/top.jsp"></jsp:include>
+	<jsp:include page="/pages/public/left.jsp"></jsp:include>
+	<div class="content">
 		<ul class="breadcrumb">
 			<li>Index<span class="divider">/</span></li>
 			<li class="active">WareHouse</li>
 		</ul>
-
 		<div class="container-fluid">
 			<div class="row-fluid">
-
-
 				<div class="row-fluid">
 
 					<div class="alert alert-info">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<strong>Just a quick note:</strong> Hope you like the theme!
-					</div>
-
+					</div>					
+<!-- 
 					<div class="block">
 						<a href="#page-stats" class="block-heading" data-toggle="collapse">Latest
 							Stats</a>
@@ -135,7 +118,7 @@
 
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- <div class="row-fluid">
@@ -273,11 +256,9 @@
        </div>
    </div>
    </div> -->
-
-<%-- <jsp:include page="/pages/public/bottom.jsp"></jsp:include> --%>
+				<%-- <jsp:include page="/pages/public/bottom.jsp"></jsp:include> --%>
 			</div>
 		</div>
-	
 	</div>
 	<script
 		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.js"></script>

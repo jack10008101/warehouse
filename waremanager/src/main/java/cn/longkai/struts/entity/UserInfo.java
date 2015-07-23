@@ -26,7 +26,7 @@ public class UserInfo implements Serializable{
 	private String department;//所属部门
 	private String name;//真实姓名
 	private String phone;//联系方式
-	private boolean isLive;//是否在公司
+	private boolean status;//是否在公司
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -85,12 +85,13 @@ public class UserInfo implements Serializable{
 		this.phone = phone;
 	}
 	@Column(nullable=false)
-	public boolean isLive() {
-		return isLive;
+	public boolean isStatus() {
+		return status;
 	}
-	public void setLive(boolean isLive) {
-		this.isLive = isLive;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
+    
 	
 	
 }

@@ -12,8 +12,7 @@
 			<property name="hibernate.transaction.flush_before_completion"
 				value="true" />
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>	
-			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
-			
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />			
 		</properties>
 	</persistence-unit>
 

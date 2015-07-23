@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>index</title>
@@ -16,35 +16,25 @@
 	href="${pageContext.request.contextPath}/stylesheets/theme.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/lib/font-awesome/css/font-awesome.css">
-
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/stylesheets/base.css">
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
-
+<script type="text/javascript">
+$(function(){
+	$('#userName').click(function () {
+		var userName=$("#userName").val();
+		if(userName.length<6||userName.length>20){
+			bootbox.alert("用户名长度在6——12之间");
+			return false;
+		}else{
+			
+		}
+	});
+	
+});
+</script>
 <!-- Demo page code -->
-
-<style type="text/css">
-#line-chart {
-	height: 300px;
-	width: 800px;
-	margin: 0px auto;
-	margin-top: 1em;
-}
-
-.brand {
-	font-family: georgia, serif;
-}
-
-.brand .first {
-	color: #ccc;
-	font-style: italic;
-}
-
-.brand .second {
-	color: #fff;
-	font-weight: bold;
-}
-</style>
-
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="lib/html5.js"></script>
@@ -70,26 +60,72 @@
 <body class="">
 	<!--<![endif]-->
 	<!-- 网页头部 -->
-<jsp:include page="/pages/public/top.jsp"></jsp:include>
-<jsp:include page="/pages/public/left.jsp"></jsp:include>
-<div class="content">
-
+	<jsp:include page="/pages/public/top.jsp"></jsp:include>
+	<jsp:include page="/pages/public/left.jsp"></jsp:include>
+	<div class="content">
 		<ul class="breadcrumb">
 			<li>系统管理 <span class="divider">/</span></li>
 			<li class="active">添加用户</li>
 		</ul>
-
 		<div class="container-fluid">
 			<div class="row-fluid">
-
-
 				<div class="row-fluid">
-
 					<div class="alert alert-info">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<strong>Just a quick note:</strong> Hope you like the theme!
 					</div>
+					<div class="well">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#" data-toggle="tab">添加用户信息</a></li>
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div class="tab-pane active in">
+								<form class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label" for="userName">用户名</label>
+										<div class="controls">
+											<input type="text" id="userName" name="userName"
+												placeholder="输入用户名">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="password">密码</label>
+										<div class="controls">
+											<input type="password" id="password" name="password"
+											 placeholder="输入密码">
+											 
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="department">密码</label>
+										<div class="controls">
+											<input type="text" id="department" name="department"
+											 placeholder="所属部门">
+											 
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="workId">工号</label>
+										<div class="controls">
+											<input type="text" id="workId" name="workId"
+											 placeholder="输入工号"> 
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls">
+											<!-- <label class="checkbox"> <input type="checkbox">
+												Remember me
+											</label> -->
+											<button type="submit" class="btn">Sign in</button>
+										</div>
+									</div>
+								</form>
 
+							</div>
+						</div>
+
+					</div>
+					<!-- 
 					<div class="block">
 						<a href="#page-stats" class="block-heading" data-toggle="collapse">Latest
 							Stats</a>
@@ -126,7 +162,7 @@
 
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- <div class="row-fluid">
@@ -265,15 +301,14 @@
    </div>
    </div> -->
 
-<%-- <jsp:include page="/pages/public/bottom.jsp"></jsp:include> --%>
+				<%-- <jsp:include page="/pages/public/bottom.jsp"></jsp:include> --%>
 			</div>
 		</div>
-	
+
 	</div>
 	<script
 		src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript">
-		debugger;
 		$("[rel=tooltip]").tooltip();
 		$(function() {
 			$('.demo-cancel-click').click(function() {
