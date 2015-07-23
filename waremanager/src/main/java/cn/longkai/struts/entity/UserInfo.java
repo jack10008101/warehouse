@@ -22,11 +22,11 @@ public class UserInfo implements Serializable{
 	private String userName;//用户名
 	private String password;//登录密码
 	private String workId;//工号
-	private boolean isAdmin;//是否管理员
+	private boolean manager;//是否管理员
 	private String department;//所属部门
 	private String name;//真实姓名
 	private String phone;//联系方式
-	private boolean status;//是否在公司
+	private boolean status;//是否离职
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -56,12 +56,12 @@ public class UserInfo implements Serializable{
 	public void setWorkId(String workId) {
 		this.workId = workId;
 	}
-	@Column(nullable=false)
-	public boolean isAdmin() {
-		return isAdmin;
+    @Column(nullable=false)
+	public boolean isManager() {
+		return manager;
 	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setManager(boolean manager) {
+		this.manager = manager;
 	}
 	@Column(length=40)
 	public String getDepartment() {

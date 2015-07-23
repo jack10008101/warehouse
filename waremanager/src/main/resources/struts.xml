@@ -9,9 +9,18 @@
     <constant name="struts.devMode" value="true" />
 
 	<package name="user" extends="struts-default" namespace="/">
-		<action name="add" class="userController" method="add">
+		<!-- <action name="add" class="userController" method="add">
 			<result type="freemarker">register.html</result>
 			<result name="error" type="freemarker">error.html</result>
+		</action> -->
+				<!-- 用户管理 -->
+		<action name="userInfoAction_*" class="userInfoAction" method="{1}">
+			<result name="addSuccess">/pages/usermanager/listuser.jsp</result>
+<!-- 			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+			<result name="toList" type="redirectAction">userAction_list</result>
+
+			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
+			<result name="toIndex" type="redirect">/index.jsp</result> -->
 		</action>
 		<action name="">
 			<result>index.html</result>

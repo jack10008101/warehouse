@@ -21,18 +21,43 @@
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-$(function(){
-	$('#userName').click(function () {
-		var userName=$("#userName").val();
-		if(userName.length<6||userName.length>20){
-			bootbox.alert("用户名长度在6——12之间");
-			return false;
-		}else{
+	$(function() {
+		$('#userName').change(function() {
+			var userName = $("#userName").val();
+			if (userName.length<6||userName.length>20) {
+				bootbox.alert("用户名长度在6——15之间");
+				$("#userName").val("输入用户名,长度为6-15");
+				return;
+			}
+		});
+		$("#password").change(function() {
+			var password = $("#password").val();
+			if (password.length<6||password.length>20) {
+				bootbox.alert("密码长度在6——15之间");
+				$("#password").val("");
+				return;
+			}
+		});
+		$("#btnAdd").click(function(){
+			debugger;
+			var userName = $("#userName").val();
+			if (userName.length<6||userName.length>20) {
+				bootbox.alert("用户名长度在6——15之间");
+				$("#userName").val("输入用户名,长度为6-15");
+				return;
+			}
+			var password = $("#password").val();
+			if (password.length<6||password.length>20) {
+				bootbox.alert("密码长度在6——15之间");
+				$("#password").val("");
+				return;
+			}
 			
-		}
+			$("#addUserInfo").attr("action","userInfoAction_add.action").submit();
+			bootbox.alert("success");
+		});
 	});
 	
-});
 </script>
 <!-- Demo page code -->
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -80,35 +105,56 @@ $(function(){
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active in">
-								<form class="form-horizontal">
+								<form class="form-horizontal"  method="post" enctype="multipart/form-data" id="addUserInfo">
 									<div class="control-group">
 										<label class="control-label" for="userName">用户名</label>
 										<div class="controls">
-											<input type="text" id="userName" name="userName"
-												placeholder="输入用户名">
+											<input type="text" id="userName" name="userInfo.userName"
+												placeholder="输入用户名,长度为6-15" maxlength="15" required="required">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="password">密码</label>
+										<label class="control-label" for="password" >密码</label>
 										<div class="controls">
-											<input type="password" id="password" name="password"
-											 placeholder="输入密码">
-											 
+											<input type="password" id="password" name="userInfo.password"
+												placeholder="输入密码,长度为6-15" required="required">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="department">密码</label>
 										<div class="controls">
-											<input type="text" id="department" name="department"
-											 placeholder="所属部门">
-											 
+											<input type="text" id="department" name="userInfo.department"
+												placeholder="所属部门" required="required">
+
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="workId">工号</label>
 										<div class="controls">
-											<input type="text" id="workId" name="workId"
-											 placeholder="输入工号"> 
+											<input type="text" id="workId" name="userInfo.workId"
+												placeholder="输入工号" required="required">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="manager">管理员</label>
+										<div class="controls">
+											<input type="radio" class="radio-inline" name="userInfo.manager"
+												id="manager" value="true" checked="checked">是
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+												type="radio" class="radio-inline" name="userInfo.manager"
+												id="manager" value="false">否
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="name">姓名</label>
+										<div class="controls">
+											<input type="text" id="name" name="userInfo.name" placeholder="真实姓名" required="required">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="phone">联系方式</label>
+										<div class="controls">
+											<input type="text" id="phone" name="userInfo.phone" placeholder="联系方式" required="required">
 										</div>
 									</div>
 									<div class="control-group">
@@ -116,11 +162,12 @@ $(function(){
 											<!-- <label class="checkbox"> <input type="checkbox">
 												Remember me
 											</label> -->
-											<button type="submit" class="btn">Sign in</button>
+											<button type="button" class="btn" id="btnAdd">添加用户</button>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<button type="reset" class="btn">重置信息</button>
 										</div>
 									</div>
 								</form>
-
 							</div>
 						</div>
 
