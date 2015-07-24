@@ -18,7 +18,6 @@
 			<result name="addSuccess">/pages/usermanager/listuser.jsp</result>
 <!-- 			<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
 			<result name="toList" type="redirectAction">userAction_list</result>
-
 			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result> -->
 		</action>

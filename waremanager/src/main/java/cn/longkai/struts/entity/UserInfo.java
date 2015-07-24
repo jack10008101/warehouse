@@ -26,7 +26,7 @@ public class UserInfo implements Serializable{
 	private String department;//所属部门
 	private String name;//真实姓名
 	private String phone;//联系方式
-	private boolean status;//是否离职
+	private boolean status;//是否离职,true表示在职
 	@Id
 	@GeneratedValue
 	public Integer getId() {

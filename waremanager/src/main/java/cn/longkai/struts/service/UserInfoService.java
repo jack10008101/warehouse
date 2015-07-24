@@ -1,5 +1,9 @@
 package cn.longkai.struts.service;
 
-public class UserInfoService {
+import cn.longkai.struts.entity.UserInfo;
+
+public interface UserInfoService {
+
+	void saveUserInfo(UserInfo userInfo);
 
 }
