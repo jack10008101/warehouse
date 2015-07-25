@@ -83,7 +83,7 @@
 			<li><a
 				href="${pageContext.request.contextPath}/pages/usermanager/adduser.jsp">添加用户</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/pages/usermanager/listuser.jsp">用户列表</a></li>
+				href="userInfoAction_getUserInfoList.action?page=1">用户列表</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/pages/usermanager/updateuser.jsp">修改信息</a></li>
 				<li><a

@@ -21,16 +21,16 @@
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-function skip(){  
-    var currentPage=document.getElementById('textfield').value;  
-    document.location="admin/scanNews.action?currentPage="+currentPage;  
-}  
-function nextPage(){  
-    document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage+1}"/>";  
-}  
-function prePage(){  
-    document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage-1}"/>";  
-}  
+	function skip() {
+		var currentPage = document.getElementById('textfield').value;
+		document.location = "admin/scanNews.action?currentPage=" + currentPage;
+	}
+	/* function nextPage(){  
+	 document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage+1}"/>";  
+	 } */
+	// function prePage(){  
+	//document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage-1}"/>";  
+	//}
 </script>
 <!-- Demo page code -->
 
@@ -105,48 +105,65 @@ function prePage(){
 					<div class="block">
 						<table class="table table-striped">
 							<tr>
-								<td>新闻ID</td>
-								<td>添加时间</td>
-								<td>新闻标题</td>
-								<td>添加人</td>
-								<td>新闻类型</td>
-								<td>编辑</td>
-								<td>删除</td>
+								<td>用户Id</td>
+								<td>用户名</td>
+								<td>所属部门</td>
+								<td>工号</td>
+								<td>是否管理员</td>
+								<td>姓名</td>
+								<td>联系方式</td>
+								<td>操作</td>
 							</tr>
-							<s:iterator value="resultList" id="news">
-								<s:if test="%{#news!=null}">
+							<s:iterator value="list" var="u">
+								<%-- <s:if test="%{#u!=null}"> --%>
 									<tr style="background-color: #FFFFFF">
 
-										<td style="color: green"><s:property value="#news.id" /></td>
-										<td style="color: green"><s:property
-												value="#news.createdate" /></td>
+										<td style="color: green"><s:property value="#u.id" /></td>
+										<td style="color: green"><s:property value="#u.userName" /></td>
 										<td><a
-											href="<%-- admin/scanDetail!ForNews.action?id=${news.id} --%>"
-											class="tableChars"><s:property value="#news.title" /></a></td>
-										<td><s:property value="#news.author" /></td>
-										<td style="color: green"><s:property value="#news.type" /></td>
-										<td><a
-											href="<%-- admin/editNews!getNewsDetail.action?id=${news.id} --%>"><span
-												class="tableChars">编辑</span></a></td>
+											href="<%-- admin/scanDetail!ForNews.action?id=${news.id} --%>"><s:property
+													value="#u.department" /></a></td>
+										<td><s:property value="#u.workId" /></td>
+										<td style="color: green"><s:property value="#u.manager" /></td>
+										<%-- <td><a
+											href="admin/editNews!getNewsDetail.action?id=${news.id}"><span
+												>编辑</span></a></td> --%>
+										<td><s:property value="#u.name" /></td>
+										<td><s:property value="#u.phone" /></td>
 										<td><a
 											onclick="{if(confirm('删除后不可恢复，确实要删除该信息？')){return true;}return false;}"><span
 												class="tableChars">删除</span></a></td>
 									</tr>
-								</s:if>
+								<%-- </s:if> --%>
 							</s:iterator>
 						</table>
-						<br> <span> 共<span style="color: red">
-								${recordSum} </span>条记录 <span style="color: red"> ${PageSum} </span>页
-							当前位于第<span style="color: red"> ${currentPage} </span>页 <a
-							href="<!-- admin/scanNews.action?currentPage=1 -->">首页</a> <a
-							href="javascript:prePage()"> <i class="icon-arrow-left"></i>前一页
-						</a>&nbsp; <a href="javascript:nextPage()"> 后一页<i
-								class="icon-arrow-right"></i></a> <a
-							href="<!-- admin/scanNews.action?currentPage=<s:property value='PageSum' />">尾页</a>
-							<input name="currentPage" type="text"
-							style="width: 25px; height: 20px;" id="textfield" /> <a
-							href="javascript:skip()">GO</a>
-						</span>
+						<br>
+						<div align="center">
+						<s:iterator value="pageBean">
+							 共<span style="color: red"> <s:property
+										value="allRow" />
+							</span>条记录 共<span style="color: red"> <s:property
+										value="totalPage" />
+							</span>页 当前位于第<span style="color: red"> <s:property
+										value="currentPage" />
+							</span>页 
+							<s:if test="%{currentPage==1}">
+							首页 <i class="icon-arrow-left">前一页</i>
+							&nbsp; </s:if>
+							<s:else>
+							<a href="userInfoAction_getUserInfoList.action?page=1">首页</a>
+							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage-1}"/>"><i class="icon-arrow-left"></i>前一页</a>
+							</s:else>
+							<s:if test="%{currentPage!=totalPage}">
+							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage+1}"/>"><i class="icon-arrow-right"></i>后一页</a>
+							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="totalPage"/>">最后一页</a>
+							</s:if>
+							<s:else>
+							后一页<i class="icon-arrow-right"></i>
+							末页
+							</s:else>
+						</s:iterator>
+							</div>
 					</div>
 				</div>
 			</div>
