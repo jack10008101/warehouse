@@ -30,6 +30,26 @@
 				return;
 			}
 		});
+		$('#userName').blur(function(){
+			var userName = $("#userName").val();
+			$.ajax({
+				url:"userInfoAction_userNameExists.action",
+				dataType:'html',
+				data:{userName:userName},
+		        success:function(strValue)
+                {
+                   
+                   if(strValue=="true"){
+                       bootbox.confirm("用户名可以使用");
+                       $("#btnAdd").removeAttr("disabled");
+                   }else
+                   {
+                       bootbox.alert("用户名已经存在");
+                       $("#btnAdd").attr({"disabled":"disabled"});
+                   }
+                }
+			});
+		});
 		$("#password").change(function() {
 			var password = $("#password").val();
 			if (password.length<6||password.length>20) {

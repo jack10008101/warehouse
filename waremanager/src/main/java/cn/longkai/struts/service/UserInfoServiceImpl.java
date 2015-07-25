@@ -58,4 +58,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return pageBean;
 	}
 
+	public boolean existsUserInfoByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return this.userInfoDao.isExistsByUserName(userName);
+	}
+
 }

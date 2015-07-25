@@ -35,15 +35,32 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		List<UserInfo> list = query.getResultList();
 		return list;
 	}
-	 /**
-     * 查询所有的记录数
-     * @return 总记录数
-     */
+
+	/**
+	 * 查询所有的记录数
+	 * 
+	 * @return 总记录数
+	 */
 	public int getALlRowCount() {
 		// TODO Auto-generated method stub
 		String hqlString = "from UserInfo";
 		Query query = this.entityManager.createQuery(hqlString);
 		return query.getResultList().size();
+	}
+
+	public boolean isExistsByUserName(String userName) {
+		// TODO Auto-generated method stub
+		String hql = "select u.userName from UserInfo u where u.userName=?";
+		boolean flag = false;
+		Query query = this.entityManager.createQuery(hql);
+		query.setParameter(0, userName);
+		List<UserInfo> list = query.getResultList();
+		if (list.size()==0||list==null) {
+			flag=false;
+		}else {
+			flag=true;
+		}
+		return flag;
 	}
 
 }

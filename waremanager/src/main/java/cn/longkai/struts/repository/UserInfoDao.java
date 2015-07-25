@@ -19,4 +19,5 @@ public interface UserInfoDao {
      * @return 总记录数
      */
     int getALlRowCount();
+	boolean isExistsByUserName(String userName);
 }

@@ -115,9 +115,9 @@
 								<td>操作</td>
 							</tr>
 							<s:iterator value="list" var="u">
-								<%-- <s:if test="%{#u!=null}"> --%>
-									<tr style="background-color: #FFFFFF">
 
+								<tr style="background-color: #FFFFFF">
+									<%-- <s:if test="%{u.name!=null}"> --%>
 										<td style="color: green"><s:property value="#u.id" /></td>
 										<td style="color: green"><s:property value="#u.userName" /></td>
 										<td><a
@@ -133,37 +133,43 @@
 										<td><a
 											onclick="{if(confirm('删除后不可恢复，确实要删除该信息？')){return true;}return false;}"><span
 												class="tableChars">删除</span></a></td>
-									</tr>
-								<%-- </s:if> --%>
+											<%-- 	</s:if> --%>
+								</tr>
+								
+								
 							</s:iterator>
 						</table>
 						<br>
 						<div align="center">
-						<s:iterator value="pageBean">
-							 共<span style="color: red"> <s:property
-										value="allRow" />
-							</span>条记录 共<span style="color: red"> <s:property
+							<s:iterator value="pageBean">
+							 共<span style="color: red"> <s:property value="allRow" />
+								</span>条记录 共<span style="color: red"> <s:property
 										value="totalPage" />
-							</span>页 当前位于第<span style="color: red"> <s:property
+								</span>页 当前位于第<span style="color: red"> <s:property
 										value="currentPage" />
-							</span>页 
+								</span>页 
 							<s:if test="%{currentPage==1}">
 							首页 <i class="icon-arrow-left">前一页</i>
 							&nbsp; </s:if>
-							<s:else>
-							<a href="userInfoAction_getUserInfoList.action?page=1">首页</a>
-							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage-1}"/>"><i class="icon-arrow-left"></i>前一页</a>
-							</s:else>
-							<s:if test="%{currentPage!=totalPage}">
-							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage+1}"/>"><i class="icon-arrow-right"></i>后一页</a>
-							<a href="userInfoAction_getUserInfoList.action?page=<s:property value="totalPage"/>">最后一页</a>
-							</s:if>
-							<s:else>
+								<s:else>
+									<a href="userInfoAction_getUserInfoList.action?page=1">首页</a>
+									<a
+										href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage-1}"/>"><i
+										class="icon-arrow-left"></i>前一页</a>
+								</s:else>
+								<s:if test="%{currentPage!=totalPage}">
+									<a
+										href="userInfoAction_getUserInfoList.action?page=<s:property value="%{currentPage+1}"/>"><i
+										class="icon-arrow-right"></i>后一页</a>
+									<a
+										href="userInfoAction_getUserInfoList.action?page=<s:property value="totalPage"/>">最后一页</a>
+								</s:if>
+								<s:else>
 							后一页<i class="icon-arrow-right"></i>
 							末页
 							</s:else>
-						</s:iterator>
-							</div>
+							</s:iterator>
+						</div>
 					</div>
 				</div>
 			</div>

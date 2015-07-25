@@ -27,6 +27,13 @@ public class UserInfo implements Serializable{
 	private String name;//真实姓名
 	private String phone;//联系方式
 	private boolean status;//是否离职,true表示在职
+	public UserInfo() {
+		// TODO Auto-generated constructor stub
+	}
+	public UserInfo(String userName) {
+		super();
+		this.userName = userName;
+	}
 	@Id
 	@GeneratedValue
 	public Integer getId() {

@@ -1,9 +1,12 @@
 package cn.longkai.struts.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -66,5 +69,21 @@ public class UserInfoAction extends ActionSupport{
 		this.pageBean=userInfoService.queryForPage(10, page);
 		this.list=this.pageBean.getList();
 		return "list_success";
+	}
+    /**
+     * 判断用户名是否唯一
+     * @throws  
+     */
+    public void userNameExists(){
+    	HttpServletRequest request = ServletActionContext.getRequest();
+    	String userName=request.getParameter("userName");
+        boolean flag=this.userInfoService.existsUserInfoByUserName(userName);
+        try {
+			ServletActionContext.getResponse().getWriter().print(flag);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 	}
 }

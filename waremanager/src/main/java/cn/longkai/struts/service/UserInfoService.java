@@ -13,4 +13,5 @@ public interface UserInfoService {
 	 * @return 封装了分页信息的PageBean
 	 */
     PageBean<UserInfo> queryForPage(int pageSize,int page);
+	boolean existsUserInfoByUserName(String userName);
 }
