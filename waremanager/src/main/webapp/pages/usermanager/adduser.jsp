@@ -22,54 +22,37 @@
 	type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#userName').change(function() {
+		$('#userName').mouseout(function() {
 			var userName = $("#userName").val();
 			if (userName.length<6||userName.length>20) {
-				bootbox.alert("用户名长度在6——15之间");
+				//bootbox.alert("用户名长度在6——15之间");
 				$("#userName").val("输入用户名,长度为6-15");
 				return;
 			}
 		});
-		$('#userName').blur(function(){
-			var userName = $("#userName").val();
-			$.ajax({
-				url:"userInfoAction_userNameExists.action",
-				dataType:'html',
-				data:{userName:userName},
-		        success:function(strValue)
-                {
-                   
-                   if(strValue=="true"){
-                       bootbox.confirm("用户名可以使用");
-                       $("#btnAdd").removeAttr("disabled");
-                   }else
-                   {
-                       bootbox.alert("用户名已经存在");
-                       $("#btnAdd").attr({"disabled":"disabled"});
-                   }
-                }
-			});
-		});
-		$("#password").change(function() {
+	});
+	$(function(){
+		$("#password").mouseout(function() {
 			var password = $("#password").val();
 			if (password.length<6||password.length>20) {
-				bootbox.alert("密码长度在6——15之间");
-				$("#password").val("");
+				//bootbox.alert("密码长度在6——15之间");
+				$("#password").val();
 				return;
 			}
 		});
+	});
+	$(function(){
 		$("#btnAdd").click(function(){
-			debugger;
 			var userName = $("#userName").val();
 			if (userName.length<6||userName.length>20) {
-				bootbox.alert("用户名长度在6——15之间");
+				//bootbox.alert("用户名长度在6——15之间");
 				$("#userName").val("输入用户名,长度为6-15");
 				return;
 			}
 			var password = $("#password").val();
 			if (password.length<6||password.length>20) {
-				bootbox.alert("密码长度在6——15之间");
-				$("#password").val("");
+				//bootbox.alert("密码长度在6——15之间");
+				$("#password").val("密码长度在6——15之间");
 				return;
 			}
 			
@@ -77,7 +60,29 @@
 			bootbox.alert("success");
 		});
 	});
-	
+        $(function(){
+		$('#userName').mouseleave(function(){
+			var userName = $("#userName").val();
+			
+			$.ajax({
+				url:"userInfoAction_userNameExists.action",
+				dataType:'html',
+				data:{userName:userName},
+		        success:function(strValue)
+                {
+                   if(strValue=="true"){
+                      // bootbox.alert("用户名已经存在");
+                       $("#btnAdd").attr({"disabled":"disabled"});
+                       return;
+                   }else
+                   {
+                	   //bootbox.confirm("用户名可以使用");
+                       $("#btnAdd").removeAttr("disabled");
+                   }
+                }
+			});
+		});
+	}); 
 </script>
 <!-- Demo page code -->
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -141,7 +146,7 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="department">密码</label>
+										<label class="control-label" for="department">所属部门</label>
 										<div class="controls">
 											<input type="text" id="department" name="userInfo.department"
 												placeholder="所属部门" required="required">
@@ -159,10 +164,10 @@
 										<label class="control-label" for="manager">管理员</label>
 										<div class="controls">
 											<input type="radio" class="radio-inline" name="userInfo.manager"
-												id="manager" value="true" checked="checked">是
+												id="manager" value="true" >是
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 												type="radio" class="radio-inline" name="userInfo.manager"
-												id="manager" value="false">否
+												id="manager" value="false" checked="checked">否
 										</div>
 									</div>
 									<div class="control-group">
@@ -190,183 +195,8 @@
 								</form>
 							</div>
 						</div>
-
 					</div>
-					<!-- 
-					<div class="block">
-						<a href="#page-stats" class="block-heading" data-toggle="collapse">Latest
-							Stats</a>
-						<div id="page-stats" class="block-body collapse in">
-
-							<div class="stat-widget-container">
-								<div class="stat-widget">
-									<div class="stat-button">
-										<p class="title">2,500</p>
-										<p class="detail">Accounts</p>
-									</div>
-								</div>
-
-								<div class="stat-widget">
-									<div class="stat-button">
-										<p class="title">3,299</p>
-										<p class="detail">Subscribers</p>
-									</div>
-								</div>
-
-								<div class="stat-widget">
-									<div class="stat-button">
-										<p class="title">$1,500</p>
-										<p class="detail">Pending</p>
-									</div>
-								</div>
-
-								<div class="stat-widget">
-									<div class="stat-button">
-										<p class="title">$12,675</p>
-										<p class="detail">Completed</p>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div> -->
 				</div>
-
-				<!-- <div class="row-fluid">
-    <div class="block span6">
-        <a href="#tablewidget" class="block-heading" data-toggle="collapse">Users<span class="label label-warning">+10</span></a>
-        <div id="tablewidget" class="block-body collapse in">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Tompson</td>
-                  <td>the_mark7</td>
-                </tr>
-                <tr>
-                  <td>Ashley</td>
-                  <td>Jacobs</td>
-                  <td>ash11927</td>
-                </tr>
-                <tr>
-                  <td>Audrey</td>
-                  <td>Ann</td>
-                  <td>audann84</td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>Robinson</td>
-                  <td>jr5527</td>
-                </tr>
-                <tr>
-                  <td>Aaron</td>
-                  <td>Butler</td>
-                  <td>aaron_butler</td>
-                </tr>
-                <tr>
-                  <td>Chris</td>
-                  <td>Albert</td>
-                  <td>cab79</td>
-                </tr>
-              </tbody>
-            </table>
-            <p><a href="users.html">More...</a></p>
-        </div>
-    </div> -->
-				<!--  <div class="block span6">
-       <a href="#widget1container" class="block-heading" data-toggle="collapse">Collapsible </a>
-       <div id="widget1container" class="block-body collapse in">
-           <h2>Here's a Tip</h2>
-           <p>This template was developed with <a href="#" target="_blank">Middleman</a> and includes .erb layouts and views.</p>
-           <p>All of the views you see here (sign in, sign up, users, etc) are already split up so you don't have to waste your time doing it yourself!</p>
-           <p>The layout.erb file includes the header, footer, and side navigation and all of the views are broken out into their own files.</p>
-           <p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like you would expect.</p>
-       </div>
-   </div>
-   </div>
-   
-   <div class="row-fluid">
-   <div class="block span6">
-       <div class="block-heading">
-           <span class="block-icon pull-right">
-               <a href="#" class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i class="icon-refresh"></i></a>
-           </span>
-   
-           <a href="#widget2container" data-toggle="collapse">History</a>
-       </div>
-       <div id="widget2container" class="block-body collapse in">
-           <table class="table list">
-             <tbody>
-                 <tr>
-                     <td>
-                         <p><i class="icon-user"></i> Mark Otto</p>
-                     </td>
-                     <td>
-                         <p>Amount: $1,247</p>
-                     </td>
-                     <td>
-                         <p>Date: 7/19/2012</p>
-                         <a href="#">View Transaction</a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>
-                         <p><i class="icon-user"></i> Audrey Ann</p>
-                     </td>
-                     <td>
-                         <p>Amount: $2,793</p>
-                     </td>
-                     <td>
-                         <p>Date: 7/12/2012</p>
-                         <a href="#">View Transaction</a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>
-                         <p><i class="icon-user"></i> Mark Tompson</p>
-                     </td>
-                     <td>
-                         <p>Amount: $2,349</p>
-                     </td>
-                     <td>
-                         <p>Date: 3/10/2012</p>
-                         <a href="#">View Transaction</a>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>
-                         <p><i class="icon-user"></i> Ashley Jacobs</p>
-                     </td>
-                     <td>
-                         <p>Amount: $1,192</p>
-                     </td>
-                     <td>
-                         <p>Date: 1/19/2012</p>
-                         <a href="#">View Transaction</a>
-                     </td>
-                 </tr>
-                   
-             </tbody>
-           </table>
-       </div>
-   </div> -->
-				<!--  <div class="block span6">
-       <p class="block-heading">Not Collapsible</p>
-       <div class="block-body">
-           <h2>Built with Less</h2>
-           <p>The CSS is built with Less. There is a compiled version included if you prefer plain CSS.</p>
-           <p>Fava bean jícama seakale beetroot courgette shallot amaranth pea garbanzo carrot radicchio peanut leek pea sprouts arugula brussels sprout green bean. Spring onion broccoli chicory shallot winter purslane pumpkin gumbo cabbage squash beet greens lettuce celery. Gram zucchini swiss chard mustard burdock radish brussels sprout groundnut. Asparagus horseradish beet greens broccoli brussels.</p>
-           <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-       </div>
-   </div>
-   </div> -->
 
 				<%-- <jsp:include page="/pages/public/bottom.jsp"></jsp:include> --%>
 			</div>

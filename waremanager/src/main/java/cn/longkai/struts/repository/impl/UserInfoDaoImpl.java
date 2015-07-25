@@ -28,7 +28,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	@SuppressWarnings("unchecked")
 	public List<UserInfo> getUserInfos(int offset, int length) {
 		// TODO Auto-generated method stub
-		String hqlString = "from UserInfo";
+		String hqlString = "from UserInfo u where u.status=true";
 		Query query = this.entityManager.createQuery(hqlString);
 		query.setFirstResult(offset);
 		query.setMaxResults(length);
@@ -43,7 +43,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	 */
 	public int getALlRowCount() {
 		// TODO Auto-generated method stub
-		String hqlString = "from UserInfo";
+		String hqlString = "from UserInfo u where u.status=true";
 		Query query = this.entityManager.createQuery(hqlString);
 		return query.getResultList().size();
 	}
@@ -53,7 +53,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		String hql = "select u.userName from UserInfo u where u.userName=?";
 		boolean flag = false;
 		Query query = this.entityManager.createQuery(hql);
-		query.setParameter(0, userName);
+		query.setParameter(1, userName);
 		List<UserInfo> list = query.getResultList();
 		if (list.size() == 0 || list == null) {
 			flag = false;

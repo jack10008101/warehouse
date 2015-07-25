@@ -21,15 +21,15 @@
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-$(function(){
-/* 	$("#btnDelete").click(function(){
-		bootbox.confirm("确认删除当前用户？",function(result){
-			if(result){
-				window.location.href="deleteUserInfoById"
-			}
-		});
-	}); */
-});
+	$(function() {
+		/* 	$("#btnDelete").click(function(){
+		 bootbox.confirm("确认删除当前用户？",function(result){
+		 if(result){
+		 window.location.href="deleteUserInfoById"
+		 }
+		 });
+		 }); */
+	});
 </script>
 <!-- Demo page code -->
 
@@ -117,24 +117,28 @@ $(function(){
 							</tr>
 							<s:iterator value="list" var="u">
 
-								<tr style="background-color: #FFFFFF" >
+								<tr style="background-color: #FFFFFF">
 									<%-- <s:if test="%{u.name!=null}"> --%>
-										<td style="color: green"><s:property value="#u.id" /></td>
-										<td style="color: green"><s:property value="#u.userName" /></td>
-										<td><a
-											href="<%-- admin/scanDetail!ForNews.action?id=${news.id} --%>"><s:property
-													value="#u.department" /></a></td>
-										<td><s:property value="#u.workId" /></td>
-										<td ><%-- <s:property value="#u.manager" /> --%>
-										<s:if test="%{u.manager==true}">是</s:if>
-										<s:else>否</s:else>
-										</td>
-										<td><s:property value="#u.name" /></td>
-										<td><s:property value="#u.phone" /></td>
-										<td><a onclick="{if(bootbox.confirm('是否确认删除当前的用户？')){return true;}return false;}"  href="userInfoAction_deleteUserInfoById.action?id=${u.id}">删除</a></td>
-										   <td> <input type="button" class="btn btn-link" id="btnUpdatePsw" value="修改密码"></td>
-										   <td> <input type="button" class="btn btn-link" id="btnUpdateInfo" value="修改信息">
-										</td>
+									<td style="color: green"><s:property value="#u.id" /></td>
+									<td style="color: green"><s:property value="#u.userName" /></td>
+									<td><a
+										href="<%-- admin/scanDetail!ForNews.action?id=${news.id} --%>"><s:property
+												value="#u.department" /></a></td>
+									<td><s:property value="#u.workId" /></td>
+									<td>
+										<%-- <s:property value="#u.manager" /> --%> <s:if
+											test="%{u.manager==true}">是</s:if> <s:else>否</s:else>
+									</td>
+									<td><s:property value="#u.name" /></td>
+									<td><s:property value="#u.phone" /></td>
+									<td><a
+										onclick="{if(bootbox.confirm('是否确认删除当前的用户？')){return true;}return false;}"
+										href="userInfoAction_deleteUserInfoById.action?id=${u.id}">删除</a></td>
+									<td><a
+										href="${pageContext.request.contextPath}/pages/usermanager/updatepassword.jsp?userName=${u.userName}">修改密码</a></td>
+									<td><a
+										href="${pageContext.request.contextPath}/pages/usermanager/updateuser.jsp?userName=${u.userName}">修改信息</a></td>
+									</td>
 								</tr>
 							</s:iterator>
 						</table>
