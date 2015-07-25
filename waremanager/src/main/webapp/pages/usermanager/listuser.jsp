@@ -21,16 +21,15 @@
 <script src="${pageContext.request.contextPath}/lib/jquery-1.7.2.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-	function skip() {
-		var currentPage = document.getElementById('textfield').value;
-		document.location = "admin/scanNews.action?currentPage=" + currentPage;
-	}
-	/* function nextPage(){  
-	 document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage+1}"/>";  
-	 } */
-	// function prePage(){  
-	//document.location="admin/scanNews.action?currentPage=<s:property value="%{pageBean.currentPage-1}"/>";  
-	//}
+$(function(){
+/* 	$("#btnDelete").click(function(){
+		bootbox.confirm("确认删除当前用户？",function(result){
+			if(result){
+				window.location.href="deleteUserInfoById"
+			}
+		});
+	}); */
+});
 </script>
 <!-- Demo page code -->
 
@@ -112,11 +111,13 @@
 								<td>是否管理员</td>
 								<td>姓名</td>
 								<td>联系方式</td>
-								<td>操作</td>
+								<td>删除用户</td>
+								<td>修改密码</td>
+								<td>修改信息</td>
 							</tr>
 							<s:iterator value="list" var="u">
 
-								<tr style="background-color: #FFFFFF">
+								<tr style="background-color: #FFFFFF" >
 									<%-- <s:if test="%{u.name!=null}"> --%>
 										<td style="color: green"><s:property value="#u.id" /></td>
 										<td style="color: green"><s:property value="#u.userName" /></td>
@@ -124,19 +125,17 @@
 											href="<%-- admin/scanDetail!ForNews.action?id=${news.id} --%>"><s:property
 													value="#u.department" /></a></td>
 										<td><s:property value="#u.workId" /></td>
-										<td style="color: green"><s:property value="#u.manager" /></td>
-										<%-- <td><a
-											href="admin/editNews!getNewsDetail.action?id=${news.id}"><span
-												>编辑</span></a></td> --%>
+										<td ><%-- <s:property value="#u.manager" /> --%>
+										<s:if test="%{u.manager==true}">是</s:if>
+										<s:else>否</s:else>
+										</td>
 										<td><s:property value="#u.name" /></td>
 										<td><s:property value="#u.phone" /></td>
-										<td><a
-											onclick="{if(confirm('删除后不可恢复，确实要删除该信息？')){return true;}return false;}"><span
-												class="tableChars">删除</span></a></td>
-											<%-- 	</s:if> --%>
+										<td><a onclick="{if(bootbox.confirm('是否确认删除当前的用户？')){return true;}return false;}"  href="userInfoAction_deleteUserInfoById.action?id=${u.id}">删除</a></td>
+										   <td> <input type="button" class="btn btn-link" id="btnUpdatePsw" value="修改密码"></td>
+										   <td> <input type="button" class="btn btn-link" id="btnUpdateInfo" value="修改信息">
+										</td>
 								</tr>
-								
-								
 							</s:iterator>
 						</table>
 						<br>

@@ -20,4 +20,5 @@ public interface UserInfoDao {
      */
     int getALlRowCount();
 	boolean isExistsByUserName(String userName);
+	void deleteUserInfoById(Integer id);
 }

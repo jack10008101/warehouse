@@ -63,4 +63,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return this.userInfoDao.isExistsByUserName(userName);
 	}
 
+	public void deleteUserById(Integer id) {
+		// TODO Auto-generated method stub
+		this.userInfoDao.deleteUserInfoById(id);
+	}
+
 }

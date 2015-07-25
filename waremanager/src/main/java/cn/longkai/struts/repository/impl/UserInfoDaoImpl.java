@@ -55,12 +55,20 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		Query query = this.entityManager.createQuery(hql);
 		query.setParameter(0, userName);
 		List<UserInfo> list = query.getResultList();
-		if (list.size()==0||list==null) {
-			flag=false;
-		}else {
-			flag=true;
+		if (list.size() == 0 || list == null) {
+			flag = false;
+		} else {
+			flag = true;
 		}
 		return flag;
+	}
+
+	public void deleteUserInfoById(Integer id) {
+		// TODO Auto-generated method stub
+		Query query = this.entityManager
+				.createQuery("update UserInfo u set u.status=false where u.id=:uid");
+		query.setParameter("uid", id);
+		query.executeUpdate();
 	}
 
 }

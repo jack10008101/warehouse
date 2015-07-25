@@ -14,4 +14,5 @@ public interface UserInfoService {
 	 */
     PageBean<UserInfo> queryForPage(int pageSize,int page);
 	boolean existsUserInfoByUserName(String userName);
+	void deleteUserById(Integer id);
 }

@@ -86,4 +86,11 @@ public class UserInfoAction extends ActionSupport{
 			System.out.println(e.getMessage());
 		}
 	}
+    public String deleteUserInfoById() {
+    	HttpServletRequest request = ServletActionContext.getRequest();
+    	String id=request.getParameter("id");
+    	Integer uid=Integer.parseInt(id);
+    	this.userInfoService.deleteUserById(uid);
+		return "deleteUser_success";
+	}
 }
