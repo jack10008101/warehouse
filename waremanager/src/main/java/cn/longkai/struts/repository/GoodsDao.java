@@ -1,4 +1,7 @@
 package cn.longkai.struts.repository;
+
+import cn.longkai.struts.entity.Goods;
+
 /**
  * 关于物品类的数据库操作
  * @author jack
@@ -6,5 +9,7 @@ package cn.longkai.struts.repository;
  *
  */
 public interface GoodsDao {
+
+	void persistGoods(Goods goods);
 
 }

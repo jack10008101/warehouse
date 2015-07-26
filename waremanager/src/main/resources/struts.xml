@@ -19,6 +19,11 @@
 			<result name="list_success">/pages/usermanager/listuser.jsp</result>
 			<result name="deleteUser_success" type="redirectAction">userInfoAction_getUserInfoList.action?page=1</result>
 		</action>
+		<!-- 物品管理 -->
+		<action name="goodsAction_*" class="goodsAction" method="{1}">
+		<result name="addgoods_success">/pages/goodsmanager/addgoods.jsp</result>
+		</action>
+		
 		<action name="">
 			<result>index.html</result>
 		</action>

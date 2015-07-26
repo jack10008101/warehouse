@@ -21,7 +21,64 @@
 	type="text/javascript"></script>
 
 <!-- Demo page code -->
+<script type="text/javascript">
+	$(function() {
+		//如果是必填的，则加红星标识
+	/* 	$("form :input.required").each(function() {
+			var $required = $("<span><strong class='high'> *</strong><span>"); //创建元素
+			$(this).parent().append($required); //然后将它追加到文档中
+		}); */
+		//文本框失去焦点后
+		$('#addGoods :input').blur(
+				function() {
+					var $parent = $(this).parent();
+					$parent.find(".formtips").remove();
+					//验证类型
+					if ($(this).is('#type')) {
+						if (this.value == "") {
+							var errorMsg = "*不可为空";
+							$parent.append('<span class="formtips onError">'
+									+ errorMsg + '</span>');
+						} else {
+							var okMsg = '√输入正确.';
+							$parent.append('<span class="formtips onSuccess">'
+									+ okMsg + '</span>');
+						}
+					}
+					//验证类型
+					if($(this).is('#firstType')){
+						if (this.value == "") {
+							var errorMsg = "*不可为空";
+							$parent.append('<span class="formtips onError">'
+									+ errorMsg + '</span>');
+						} else {
+							var okMsg = '√输入正确.';
+							$parent.append('<span class="formtips onSuccess">'
+									+ okMsg + '</span>');
+						}
+					
+					}
+				}).keyup(function() {
+			$(this).triggerHandler("blur");
+		}).focus(function() {
+			$(this).triggerHandler("blur");
+		});//end blur
 
+		//提交，最终验证
+		$('#send').click(function() {
+			$("#addGoods :input.required").trigger('blur');
+			var numError = $('form .onError').length;
+			if (numError) {
+				return false;
+			}
+			//alert("注册成功,密码已发到你的邮箱,请查收.");
+		});
+		//重置
+		$('#res').click(function() {
+			$(".formtips").remove();
+		});
+	})
+</script>
 <style type="text/css">
 #line-chart {
 	height: 300px;
@@ -42,6 +99,28 @@
 .brand .second {
 	color: #fff;
 	font-weight: bold;
+}
+
+.formtips {
+	width: 200px;
+	margin: 2px;
+	padding: 2px;
+}
+
+.onError {
+	/* background: #ffe0e9; */
+	color:red;
+	padding-left: 25px;
+}
+
+.onSuccess {
+	/* background-color: pink;  */
+	color:green;
+	padding-left: 25px;
+}
+
+.high {
+	color: Gray;
 }
 </style>
 
@@ -103,17 +182,18 @@
 											<label class="control-label" for="type">类型</label>
 											<div class="controls">
 												<input type="text" id="type" name="goods.type"
-													placeholder="物品类型如备件、耗材、工具" required="required" maxlength="10">
+													placeholder="物品类型如备件、耗材、工具" required="required"
+													maxlength="10">
 											</div>
 										</div>
-											<div class="control-group">
+										<div class="control-group">
 											<label class="control-label" for="firstType">一级分类</label>
 											<div class="controls">
 												<input type="text" id="firstType" name="goods.firstType"
 													placeholder="一级分类，如一级备件" maxlength="30">
 											</div>
 										</div>
-											<div class="control-group">
+										<div class="control-group">
 											<label class="control-label" for="secondType">二级分类</label>
 											<div class="controls">
 												<input type="text" id="secondType" name="goods.secondType"
@@ -156,11 +236,12 @@
 													placeholder="设置库存最低值" required="required">
 											</div>
 										</div>
-											<div class="control-group">
+										<div class="control-group">
 											<label class="control-label" for="providerName">供应商信息</label>
 											<div class="controls">
-												<input type="text" id="providerName" name="goods.providerName"
-													placeholder="供应商信息" required="required">
+												<input type="text" id="providerName"
+													name="goods.providerName" placeholder="供应商信息"
+													required="required">
 											</div>
 										</div>
 										<div class="control-group">
@@ -170,12 +251,13 @@
 													placeholder="存储地址" required="required">
 											</div>
 										</div>
-											<div class="control-group">
+										<div class="control-group">
 											<label class="control-label" for="remark">备注</label>
 											<div class="controls">
-											<!-- 	<input type="textarea" id="remark" name="goods.remark"
+												<!-- 	<input type="textarea" id="remark" name="goods.remark"
 													placeholder="相关描述信息" > -->
-													<textarea id="remark" name="goods.remark" placeholder="相关描述信息"></textarea>
+												<textarea id="remark" name="goods.remark"
+													placeholder="相关描述信息"></textarea>
 											</div>
 										</div>
 										<div class="control-group">
@@ -183,7 +265,7 @@
 												<!-- <label class="checkbox"> <input type="checkbox">
 												Remember me
 											</label> -->
-												<button type="button" class="btn" id="btnAdd">添加用户</button>
+												<button type="button" class="btn" id="btnAdd">添加物品</button>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<button type="reset" class="btn">重置信息</button>
 											</div>

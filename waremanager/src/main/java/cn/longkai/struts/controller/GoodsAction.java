@@ -32,5 +32,8 @@ public class GoodsAction extends ActionSupport{
 	public void setGoodsService(GoodsService goodsService) {
 		this.goodsService = goodsService;
 	}
-    
+    public String add(){
+    	this.goodsService.saveGoods(goods);
+    	return "addgoods_success";
+    }
 }
